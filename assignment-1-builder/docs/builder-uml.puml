@@ -1,0 +1,82 @@
+@startuml
+title Builder Pattern - Computer Configuration
+
+class Main <<Client>> {
+  +main(String[]) : void
+}
+
+class ComputerConfigurationDirector <<Director>> {
+  +officeMachine(String) : ComputerConfiguration
+  +studentMachine(String) : ComputerConfiguration
+  +gamingMachine(String) : ComputerConfiguration
+}
+
+class ComputerConfiguration <<Product>> {
+  -name : String
+  -preset : Preset
+  -cpu : Cpu
+  -gpu : Gpu
+  -motherboard : Motherboard
+  -ram : RamModule
+  -storageGb : int
+  -powerSupplyWatts : int
+  -solidStateStorage : boolean
+  -wifi : boolean
+  -bluetooth : boolean
+  -caseType : CaseType
+  -coolingType : CoolingType
+  -ComputerConfiguration(Builder)
+  +builder(String, Cpu, Motherboard, RamModule) : Builder
+  +preset() : Preset
+  +ram() : RamModule
+  +toString() : String
+}
+
+class Builder <<Builder>> {
+  +forPreset(Preset) : Builder
+  +withGraphicsCard(Gpu) : Builder
+  +withStorage(int) : Builder
+  +withHardDiskDrive() : Builder
+  +poweredBy(int) : Builder
+  +inCase(CaseType) : Builder
+  +cooledBy(CoolingType) : Builder
+  +withoutWifi() : Builder
+  +withoutBluetooth() : Builder
+  +build() : ComputerConfiguration
+  -validate() : void
+}
+
+class RamModule <<value object>> {
+  +type : RamType
+  +capacityGb : int
+  +frequencyMhz : int
+  +moduleCount : int
+  +fitsOn(Motherboard) : boolean
+}
+
+enum Preset
+enum Cpu
+enum Gpu
+enum Motherboard
+enum RamType
+enum CaseType
+enum CoolingType
+enum Socket
+
+ComputerConfiguration +-- Builder
+Builder ..> ComputerConfiguration : creates
+Main ..> ComputerConfigurationDirector : uses
+Main ..> Builder : uses directly
+ComputerConfigurationDirector ..> Builder : drives
+ComputerConfiguration *-- RamModule
+ComputerConfiguration --> Preset
+ComputerConfiguration --> Cpu
+ComputerConfiguration --> Gpu
+ComputerConfiguration --> Motherboard
+ComputerConfiguration --> CaseType
+ComputerConfiguration --> CoolingType
+RamModule --> RamType
+Cpu --> Socket
+Motherboard --> Socket
+Motherboard --> RamType
+@enduml
