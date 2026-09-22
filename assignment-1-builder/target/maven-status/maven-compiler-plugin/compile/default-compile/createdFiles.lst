@@ -1,0 +1,15 @@
+com\example\computerconfiguration\Gpu.class
+com\example\computerconfiguration\legacy\LegacyMain.class
+com\example\computerconfiguration\CoolingType.class
+com\example\computerconfiguration\ComputerConfiguration.class
+com\example\computerconfiguration\ComputerConfiguration$Builder.class
+com\example\computerconfiguration\ComputerConfigurationDirector.class
+com\example\computerconfiguration\Motherboard.class
+com\example\computerconfiguration\legacy\LegacyComputerConfiguration.class
+com\example\computerconfiguration\Cpu.class
+com\example\computerconfiguration\Socket.class
+com\example\computerconfiguration\Main.class
+com\example\computerconfiguration\Preset.class
+com\example\computerconfiguration\RamType.class
+com\example\computerconfiguration\CaseType.class
+com\example\computerconfiguration\RamModule.class
